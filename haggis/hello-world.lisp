@@ -3,7 +3,8 @@
 (defun clicked-callback (w)
   (declare (ignore w))
   (format t "Quitting~%")
-  (gtk:gtk-main-quit))
+  ;; according to tutorial, never call gtk-main-quit.
+  (gtk:leave-gtk-main))
 
 (defun doit ()
   (let ((top-level nil)
