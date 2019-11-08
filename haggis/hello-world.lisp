@@ -36,8 +36,8 @@
         top-level "delete-event"
         (lambda (widget event)
           (declare (ignore widget event))
-          (format t "Delete Event Occured (and caught and ignored).~%")
-          gdk::+gdk-event-stop+))
+          (format t "Delete Event Occured.~%")
+          (gtk:leave-gtk-main)))
 
        (gtk:gtk-widget-show-all top-level)))
 
