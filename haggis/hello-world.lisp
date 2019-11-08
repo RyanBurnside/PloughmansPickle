@@ -1,6 +1,6 @@
 (in-package :haggis)
 
-(defun clicked-callback (w)
+(defun quit-application (w)
   (declare (ignore w))
   (format t "Quitting~%")
   ;; according to tutorial, never call gtk-main-quit.
@@ -17,7 +17,7 @@
      (let ((builder (make-instance 'gtk:gtk-builder)))
        (gtk:gtk-builder-add-from-file builder ui-file)
        (gtk:gtk-builder-connect-signals
-        builder `(("quit-button-clicked" clicked-callback)))
+        builder `(("menu-file-quit" quit-application)))
 
 
        (setf top-level (gtk:gtk-builder-get-object builder "top_level"))
