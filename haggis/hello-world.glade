@@ -4,9 +4,14 @@
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkWindow" id="top_level">
     <property name="can_focus">False</property>
+    <property name="events">GDK_KEY_PRESS_MASK | GDK_KEY_RELEASE_MASK | GDK_STRUCTURE_MASK</property>
+    <property name="title" translatable="yes">Haggis</property>
     <property name="window_position">center-always</property>
     <property name="default_width">1280</property>
     <property name="default_height">768</property>
+    <property name="icon_name">Haggis</property>
+    <signal name="key-press-event" handler="key-press-event" swapped="no"/>
+    <signal name="key-release-event" handler="key-release-event" swapped="no"/>
     <child>
       <placeholder/>
     </child>

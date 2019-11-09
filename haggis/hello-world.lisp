@@ -6,6 +6,13 @@
   ;; according to tutorial, never call gtk-main-quit.
   (gtk:leave-gtk-main))
 
+(defun handle-key-event (w event-key)
+  (declare (ignore w))
+  (format t "Key event: (~S) ~S[~S]~%"
+          (gdk:gdk-event-key-type event-key)
+          (gdk:gdk-event-key-string event-key)
+          (gdk:gdk-event-key-keyval event-key)))
+
 (defun doit ()
   (let ((top-level nil)
         (ui-file (namestring (asdf:system-relative-pathname
@@ -17,7 +24,9 @@
      (let ((builder (make-instance 'gtk:gtk-builder)))
        (gtk:gtk-builder-add-from-file builder ui-file)
        (gtk:gtk-builder-connect-signals
-        builder `(("menu-file-quit" quit-application)))
+        builder `(("menu-file-quit" quit-application)
+                  ("key-press-event" handle-key-event)
+                  ("key-release-event" handle-key-event)))
 
 
        (setf top-level (gtk:gtk-builder-get-object builder "top_level"))
